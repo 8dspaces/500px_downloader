@@ -1,7 +1,7 @@
 500px_downloader
 ================
 
-GUI exercise with Tkinter, and create a GUI to used download picture from 500px
+GUI exercise with Tkinter, and create a simple GUI to download single picture from 500px
 only support individual download
 
 ### Settings  
