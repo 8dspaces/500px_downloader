@@ -23,18 +23,18 @@ class PXdownloader(object):
         content = LabelFrame(self.win, text="Save Settings", padding=(3, 3, 12, 12))
         content.grid(padx = 10, pady= (15,0), sticky=(N, S, E, W))
         
-        fr_url = Frame(content, borderwidth=5, width=500)
+        fr_url = Frame(content)
         url_label = Label(fr_url, width=10, text="Pic url:")
-        self.url_entry = Entry(fr_url, width=60)# used to get url for pic 
-        fr_url.grid(padx = 10, pady = 10, columnspan=4, rowspan=2)
+        self.url_entry = Entry(fr_url, width=50)# used to get url for pic 
+        fr_url.grid(padx = (0,5), pady = 10)
         url_label.grid(row = 0, column = 0)
-        self.url_entry.grid(row = 0, column = 1,columnspan=2, sticky='ne')
+        self.url_entry.grid(row = 0, column = 1)
         
         
         fr_savepath = Frame(content)
         savepath_label = Label(fr_savepath, width=10, text="File Path:")
-        self.savepath_entry = Entry(fr_savepath, width=60) # used to get save path 
-        fr_savepath.grid(padx = 10, pady = 10, sticky='news')
+        self.savepath_entry = Entry(fr_savepath, width=50) # used to get save path 
+        fr_savepath.grid(padx = (0,5), pady = 10)
         savepath_label.grid(row = 0, column = 0)
         self.savepath_entry.grid(row = 0, column = 1)
         
@@ -61,8 +61,8 @@ class PXdownloader(object):
 
         # reference from github https://github.com/figengungor/500px, it's an easy one 
         import urllib
-        link = self.url_entry.get()
-        name = self.savepath_entry.get()
+        link = self.url_entry.get().strip()
+        name = self.savepath_entry.get().strip()
         
         if link and name:
             try: 
@@ -84,3 +84,4 @@ if __name__ == '__main__':
     
     app = PXdownloader()
     
+
