@@ -1,7 +1,7 @@
 # coding: utf-8 
 
-from Tkinter import *
-from ttk import * 
+from tkinter import *
+from tkinter.ttk import * 
 
 class PXdownloader(object):
 
@@ -60,28 +60,26 @@ class PXdownloader(object):
     def download(self):
 
         # reference from github https://github.com/figengungor/500px, it's an easy one 
-        import urllib
+        import urllib.request, urllib.parse, urllib.error
         link = self.url_entry.get().strip()
         name = self.savepath_entry.get().strip()
         
         if link and name:
             try: 
-                f = urllib.urlopen(link)
-                pageResource = f.read()
-                pattern="{\"size\":2048,\"url\":"
+                f = urllib.request.urlopen(link)
+                pageResource = f.read().decode()
+                pattern = "{\"size\":2048,\"url\":"
                 start = pageResource.find(pattern)+20
                 end = pageResource.find("\"", start+2)
                 imgLink = pageResource[start:end]
-                imgLink=imgLink.replace("\\", "")          
-                urllib.urlretrieve(imgLink, name+".jpg")
+                imgLink = imgLink.replace("\\", "")   
+                urllib.request.urlretrieve(imgLink, name + '.jpg')
                 self._label.set("photo downloaded on: {0}".format(name))
-            except Exception, e:
-                self._label.set("download fail!" + e.message)
+            except Exception as e:
+                self._label.set("download fail! {0}".format(e))
         else:
             self._label.set('please input url and save path')
             
 if __name__ == '__main__': 
     
     app = PXdownloader()
-    
-
